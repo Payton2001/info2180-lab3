@@ -29,36 +29,45 @@ window.onload = function(){
         square[i].classList.add('square')
         square[i].addEventListener('click', function(){
 
-            if(whoseTurn == 'X' && gameRunning){
-                this.innerHTML = X
-                this.classList.add(X)
-                state[i] = whoseTurn
-                whoseTurn = O
-                console.log(state)
-                if(isWinner(X) && gameRunning){
-                    status.textContent = 'Congratulations! X is the winner!'
-                    status.classList.add('you-won')
-                    gameRunning == false
-                }
-                isDraw()
-            
-            }
-            else if (whoseTurn == 'O' && gameRunning){
-                this.innerHTML = O
-                this.classList.add(O)
-                state[i] = whoseTurn
-                whoseTurn = X
-                console.log(state)
-                if(isWinner(O) && gameRunning){
-                    status.textContent = 'Congratulations! O is the winner!'
-                    status.classList.add('you-won')
-                    gameRunning == false
-                }
-                isDraw()
-                
-            }
-            //if (gameRunning == false){return}
+        //gameRunning = true
+            if(this.innerHTML != X && this.innerHTML != O){
 
+                if(whoseTurn == 'X' && gameRunning == true){
+                    this.innerHTML = X
+                    this.classList.add(X)
+                    state[i] = whoseTurn
+                    whoseTurn = O
+                    console.log(state)
+                    if(isWinner(X) && gameRunning == true){
+                        status.textContent = 'Congratulations! X is the winner!'
+                        status.classList.add('you-won')
+                        gameRunning = false
+                        console.log(gameRunning)
+                    }
+                    isDraw()
+                
+                }
+                else if (whoseTurn == 'O' && gameRunning == true){
+                    this.innerHTML = O
+                    this.classList.add(O)
+                    
+                    state[i] = whoseTurn
+                    whoseTurn = X
+                    console.log(state)
+                    if(isWinner(O) && gameRunning == true){
+                        status.textContent = 'Congratulations! O is the winner!'
+                        status.classList.add('you-won')
+                        gameRunning = false
+                        console.log(gameRunning)
+                    }
+                    isDraw()
+                    
+                }
+                if (gameRunning == false){
+                    console.log(gameRunning)
+                    return;
+                }
+            }
         })
 
         //Set Hover
@@ -70,8 +79,6 @@ window.onload = function(){
         })
 
     }
-
-
 
     function isWinner(whoseTurn){
         return winOrder.some(arr =>{
@@ -102,7 +109,5 @@ window.onload = function(){
             square[a].textContent =''
         }
         console.log('button clicked')
-    }
-
-        
+    }    
 }
