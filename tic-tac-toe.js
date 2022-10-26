@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 window.onload = function(){
 
@@ -17,7 +17,7 @@ window.onload = function(){
     let whoseTurn = X
     let state = ['','','','','','','','','']
     let gameRunning = true
-    const btn = document.getElementsByClassName('#btn')
+    const btn = document.querySelector('button')
     const square = document.querySelectorAll('#board div')
     const status = document.getElementById('status')
     let count = square.length
@@ -29,7 +29,6 @@ window.onload = function(){
         square[i].classList.add('square')
         square[i].addEventListener('click', function(){
 
-        
             if(whoseTurn == 'X' && gameRunning){
                 this.innerHTML = X
                 this.classList.add(X)
@@ -58,7 +57,7 @@ window.onload = function(){
                 isDraw()
                 
             }
-            if (gameRunning == false){return}
+            //if (gameRunning == false){return}
 
         })
 
@@ -91,7 +90,19 @@ window.onload = function(){
         }
     }
 
-    
+    function gameBtn(){
+        gameRunning = true
+        whoseTurn = X
+        state = ['','','','','','','','','']
+        status.textContent = "Move your mouse over a square and click to play an X or an O."
+        status.classList.remove('you-won')
+        for (let a =0; a < count; a++){
+            square[a].classList.remove(X)
+            square[a].classList.remove(O)
+            square[a].textContent =''
+        }
+        console.log('button clicked')
+    }
 
         
 }
