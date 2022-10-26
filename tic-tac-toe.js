@@ -1,6 +1,6 @@
-//let whoseTurn = X;
-const X  = 'x';
-const O = 'o';
+"use strict";
+const X  = 'X';
+const O = 'O';
 const winOrder = [
     [0, 1, 2],
     [3, 4, 5],
@@ -12,23 +12,31 @@ const winOrder = [
     [2, 4, 6],
 ];
 let whoseTurn = X;
-let gameState = ['','','','','','','','','']
+let gameState = ['','','','','','','','',''];
 let gameRunning = false;
-const btn = document.getElementsByClassName('#btn')
-let square = document.querySelectorAll('#board div')
-let count = square.length
+const btn = document.getElementsByClassName('#btn');
+let square = document.querySelectorAll('#board div');
+let count = square.length;
 
 
 window.onload = function(){
-    setGrid();
+    for (let i = 0; i < count; i++){
+        square[i].classList.add('square')
+        square[i].addEventListener('click', startGame);
+    }
 }
 
 
-function setGrid(){
-    for (let i = 0; i < count; i++){
-        square[i].className = 'square'
-        square[i].classList.add('square')
-        square[i].addEventListener('click', startGame())
-        
+function startGame(){
+    gameRunning = true;
+    if(whoseTurn == 'X'){
+        this.innerHTML = X;
+        this.classList.add(X);
+        whoseTurn = O;
+    }
+    if (whoseTurn == 'O'){
+        this.innerHTML = O;
+        this.classList.add(O);
+        whoseTurn = X;
     }
 }
